@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="17ecb5889bb44de79c7ba7b30a2b8912" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="DressMakerPolModel.C_TransactionIndex_67f90f2e_4c5b_4990_863e_f67e92d2ba8c" Width="1.5" PointX="8" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.Adresses" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.Companies" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.CompaniesAdresess" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.Extras" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.ExtrasProducts" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.IndClients" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.IndClientsAdresses" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.Materials" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.MaterialsProducts" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.Orders" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.Products" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.Users" Width="1.5" PointX="7.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.WholeSalers" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.WholeSalersAdresess" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DressMakerPolModel.database_firewall_rules" Width="1.5" PointX="7.75" PointY="11.625" IsExpanded="true" />
+        <AssociationConnector Association="DressMakerPolModel.FK_CompaniesAdresess_Adresses" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_IndClientsAdresses_Adresses" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_WholeSalersAdresess_Adresses" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_CompaniesAdresess_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_Orders_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_ExtrasProducts_Extras" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_ExtrasProducts_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_IndClientsAdresses_IndClients" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_Orders_IndClients" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_MaterialsProducts_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_MaterialsProducts_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_Products_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="DressMakerPolModel.FK_WholeSalersAdresess_WholeSalers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

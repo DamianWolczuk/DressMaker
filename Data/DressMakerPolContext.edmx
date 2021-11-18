@@ -1,0 +1,991 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DressMakerPolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="_TransactionIndex_67f90f2e-4c5b-4990-863e-f67e92d2ba8c">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Adresses">
+          <Key>
+            <PropertyRef Name="IdAdress" />
+          </Key>
+          <Property Name="IdAdress" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="HouseNumber" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="FlatNumber" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="Code" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="IdCompany" />
+          </Key>
+          <Property Name="IdCompany" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NIP" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompaniesAdresess">
+          <Key>
+            <PropertyRef Name="IdCompany" />
+            <PropertyRef Name="IdAdress" />
+            <PropertyRef Name="IdCompaniesAdresess" />
+          </Key>
+          <Property Name="IdCompany" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdAdress" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdCompaniesAdresess" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Extras">
+          <Key>
+            <PropertyRef Name="IdExtra" />
+          </Key>
+          <Property Name="IdExtra" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Length" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="ExtrasProducts">
+          <Key>
+            <PropertyRef Name="IdExtra" />
+            <PropertyRef Name="IdProduct" />
+            <PropertyRef Name="IdExtrasProducts" />
+          </Key>
+          <Property Name="IdExtra" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdProduct" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdExtrasProducts" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IndClients">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Pesel" Type="bigint" Nullable="false" />
+          <Property Name="TelNumber" Type="bigint" />
+          <Property Name="Email" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="IndClientsAdresses">
+          <Key>
+            <PropertyRef Name="IdClient" />
+            <PropertyRef Name="IdAdress" />
+            <PropertyRef Name="IdClientsAdresses" />
+          </Key>
+          <Property Name="IdClient" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdAdress" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdClientsAdresses" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Length" Type="numeric" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaterialsProducts">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+            <PropertyRef Name="IdMaterial" />
+            <PropertyRef Name="IdMaterialsProducts" />
+          </Key>
+          <Property Name="IdProduct" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdMaterial" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdMaterialsProducts" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdClient" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="IdCompany" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="Reception" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdProduct" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="IdOrder" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WholeSalers">
+          <Key>
+            <PropertyRef Name="IdWholeSaler" />
+          </Key>
+          <Property Name="IdWholeSaler" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NIP" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WholeSalersAdresess">
+          <Key>
+            <PropertyRef Name="IdWholesaler" />
+            <PropertyRef Name="IdAdress" />
+            <PropertyRef Name="IdWholeSalersAdreses" />
+          </Key>
+          <Property Name="IdWholesaler" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdAdress" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdWholeSalersAdreses" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DressMakerPol.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CompaniesAdresess_Adresses">
+          <End Role="Adresses" Type="Self.Adresses" Multiplicity="1" />
+          <End Role="CompaniesAdresess" Type="Self.CompaniesAdresess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresses">
+              <PropertyRef Name="IdAdress" />
+            </Principal>
+            <Dependent Role="CompaniesAdresess">
+              <PropertyRef Name="IdAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompaniesAdresess_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="CompaniesAdresess" Type="Self.CompaniesAdresess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="CompaniesAdresess">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtrasProducts_Extras">
+          <End Role="Extras" Type="Self.Extras" Multiplicity="1" />
+          <End Role="ExtrasProducts" Type="Self.ExtrasProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Extras">
+              <PropertyRef Name="IdExtra" />
+            </Principal>
+            <Dependent Role="ExtrasProducts">
+              <PropertyRef Name="IdExtra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtrasProducts_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ExtrasProducts" Type="Self.ExtrasProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="ExtrasProducts">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndClientsAdresses_Adresses">
+          <End Role="Adresses" Type="Self.Adresses" Multiplicity="1" />
+          <End Role="IndClientsAdresses" Type="Self.IndClientsAdresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresses">
+              <PropertyRef Name="IdAdress" />
+            </Principal>
+            <Dependent Role="IndClientsAdresses">
+              <PropertyRef Name="IdAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndClientsAdresses_IndClients">
+          <End Role="IndClients" Type="Self.IndClients" Multiplicity="1" />
+          <End Role="IndClientsAdresses" Type="Self.IndClientsAdresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IndClients">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="IndClientsAdresses">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialsProducts_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+          <End Role="MaterialsProducts" Type="Self.MaterialsProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="MaterialsProducts">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialsProducts_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="MaterialsProducts" Type="Self.MaterialsProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="MaterialsProducts">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_IndClients">
+          <End Role="IndClients" Type="Self.IndClients" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IndClients">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrder" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WholeSalersAdresess_Adresses">
+          <End Role="Adresses" Type="Self.Adresses" Multiplicity="1" />
+          <End Role="WholeSalersAdresess" Type="Self.WholeSalersAdresess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresses">
+              <PropertyRef Name="IdAdress" />
+            </Principal>
+            <Dependent Role="WholeSalersAdresess">
+              <PropertyRef Name="IdAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WholeSalersAdresess_WholeSalers">
+          <End Role="WholeSalers" Type="Self.WholeSalers" Multiplicity="1" />
+          <End Role="WholeSalersAdresess" Type="Self.WholeSalersAdresess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WholeSalers">
+              <PropertyRef Name="IdWholeSaler" />
+            </Principal>
+            <Dependent Role="WholeSalersAdresess">
+              <PropertyRef Name="IdWholesaler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DressMakerPolModelStoreContainer">
+          <EntitySet Name="_TransactionIndex_67f90f2e-4c5b-4990-863e-f67e92d2ba8c" EntityType="Self._TransactionIndex_67f90f2e-4c5b-4990-863e-f67e92d2ba8c" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adresses" EntityType="Self.Adresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompaniesAdresess" EntityType="Self.CompaniesAdresess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Extras" EntityType="Self.Extras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExtrasProducts" EntityType="Self.ExtrasProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IndClients" EntityType="Self.IndClients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IndClientsAdresses" EntityType="Self.IndClientsAdresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialsProducts" EntityType="Self.MaterialsProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WholeSalers" EntityType="Self.WholeSalers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WholeSalersAdresess" EntityType="Self.WholeSalersAdresess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CompaniesAdresess_Adresses" Association="Self.FK_CompaniesAdresess_Adresses">
+            <End Role="Adresses" EntitySet="Adresses" />
+            <End Role="CompaniesAdresess" EntitySet="CompaniesAdresess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompaniesAdresess_Companies" Association="Self.FK_CompaniesAdresess_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="CompaniesAdresess" EntitySet="CompaniesAdresess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtrasProducts_Extras" Association="Self.FK_ExtrasProducts_Extras">
+            <End Role="Extras" EntitySet="Extras" />
+            <End Role="ExtrasProducts" EntitySet="ExtrasProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtrasProducts_Products" Association="Self.FK_ExtrasProducts_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ExtrasProducts" EntitySet="ExtrasProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndClientsAdresses_Adresses" Association="Self.FK_IndClientsAdresses_Adresses">
+            <End Role="Adresses" EntitySet="Adresses" />
+            <End Role="IndClientsAdresses" EntitySet="IndClientsAdresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndClientsAdresses_IndClients" Association="Self.FK_IndClientsAdresses_IndClients">
+            <End Role="IndClients" EntitySet="IndClients" />
+            <End Role="IndClientsAdresses" EntitySet="IndClientsAdresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialsProducts_Materials" Association="Self.FK_MaterialsProducts_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="MaterialsProducts" EntitySet="MaterialsProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialsProducts_Products" Association="Self.FK_MaterialsProducts_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="MaterialsProducts" EntitySet="MaterialsProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Companies" Association="Self.FK_Orders_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_IndClients" Association="Self.FK_Orders_IndClients">
+            <End Role="IndClients" EntitySet="IndClients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Orders" Association="Self.FK_Products_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WholeSalersAdresess_Adresses" Association="Self.FK_WholeSalersAdresess_Adresses">
+            <End Role="Adresses" EntitySet="Adresses" />
+            <End Role="WholeSalersAdresess" EntitySet="WholeSalersAdresess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WholeSalersAdresess_WholeSalers" Association="Self.FK_WholeSalersAdresess_WholeSalers">
+            <End Role="WholeSalers" EntitySet="WholeSalers" />
+            <End Role="WholeSalersAdresess" EntitySet="WholeSalersAdresess" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DressMakerPolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_TransactionIndex_67f90f2e_4c5b_4990_863e_f67e92d2ba8c">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Adresses">
+          <Key>
+            <PropertyRef Name="IdAdress" />
+          </Key>
+          <Property Name="IdAdress" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HouseNumber" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="FlatNumber" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="Code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CompaniesAdresess" Relationship="Self.FK_CompaniesAdresess_Adresses" FromRole="Adresses" ToRole="CompaniesAdresess" />
+          <NavigationProperty Name="IndClientsAdresses" Relationship="Self.FK_IndClientsAdresses_Adresses" FromRole="Adresses" ToRole="IndClientsAdresses" />
+          <NavigationProperty Name="WholeSalersAdresess" Relationship="Self.FK_WholeSalersAdresess_Adresses" FromRole="Adresses" ToRole="WholeSalersAdresess" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="IdCompany" />
+          </Key>
+          <Property Name="IdCompany" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NIP" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CompaniesAdresess" Relationship="Self.FK_CompaniesAdresess_Companies" FromRole="Companies" ToRole="CompaniesAdresess" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Companies" FromRole="Companies" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="CompaniesAdresess">
+          <Key>
+            <PropertyRef Name="IdCompany" />
+            <PropertyRef Name="IdAdress" />
+            <PropertyRef Name="IdCompaniesAdresess" />
+          </Key>
+          <Property Name="IdCompany" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdAdress" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdCompaniesAdresess" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Adresses" Relationship="Self.FK_CompaniesAdresess_Adresses" FromRole="CompaniesAdresess" ToRole="Adresses" />
+          <NavigationProperty Name="Companies" Relationship="Self.FK_CompaniesAdresess_Companies" FromRole="CompaniesAdresess" ToRole="Companies" />
+        </EntityType>
+        <EntityType Name="Extras">
+          <Key>
+            <PropertyRef Name="IdExtra" />
+          </Key>
+          <Property Name="IdExtra" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Length" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="ExtrasProducts" Relationship="Self.FK_ExtrasProducts_Extras" FromRole="Extras" ToRole="ExtrasProducts" />
+        </EntityType>
+        <EntityType Name="ExtrasProducts">
+          <Key>
+            <PropertyRef Name="IdExtra" />
+            <PropertyRef Name="IdProduct" />
+            <PropertyRef Name="IdExtrasProducts" />
+          </Key>
+          <Property Name="IdExtra" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdProduct" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdExtrasProducts" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Extras" Relationship="Self.FK_ExtrasProducts_Extras" FromRole="ExtrasProducts" ToRole="Extras" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_ExtrasProducts_Products" FromRole="ExtrasProducts" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="IndClients">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pesel" Type="Int64" Nullable="false" />
+          <Property Name="TelNumber" Type="Int64" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="IndClientsAdresses" Relationship="Self.FK_IndClientsAdresses_IndClients" FromRole="IndClients" ToRole="IndClientsAdresses" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_IndClients" FromRole="IndClients" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="IndClientsAdresses">
+          <Key>
+            <PropertyRef Name="IdClient" />
+            <PropertyRef Name="IdAdress" />
+            <PropertyRef Name="IdClientsAdresses" />
+          </Key>
+          <Property Name="IdClient" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdAdress" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdClientsAdresses" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Adresses" Relationship="Self.FK_IndClientsAdresses_Adresses" FromRole="IndClientsAdresses" ToRole="Adresses" />
+          <NavigationProperty Name="IndClients" Relationship="Self.FK_IndClientsAdresses_IndClients" FromRole="IndClientsAdresses" ToRole="IndClients" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Length" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MaterialsProducts" Relationship="Self.FK_MaterialsProducts_Materials" FromRole="Materials" ToRole="MaterialsProducts" />
+        </EntityType>
+        <EntityType Name="MaterialsProducts">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+            <PropertyRef Name="IdMaterial" />
+            <PropertyRef Name="IdMaterialsProducts" />
+          </Key>
+          <Property Name="IdProduct" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdMaterial" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdMaterialsProducts" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK_MaterialsProducts_Materials" FromRole="MaterialsProducts" ToRole="Materials" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_MaterialsProducts_Products" FromRole="MaterialsProducts" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClient" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="IdCompany" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="Reception" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Companies" Relationship="Self.FK_Orders_Companies" FromRole="Orders" ToRole="Companies" />
+          <NavigationProperty Name="IndClients" Relationship="Self.FK_Orders_IndClients" FromRole="Orders" ToRole="IndClients" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Orders" FromRole="Orders" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdProduct" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdOrder" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="ExtrasProducts" Relationship="Self.FK_ExtrasProducts_Products" FromRole="Products" ToRole="ExtrasProducts" />
+          <NavigationProperty Name="MaterialsProducts" Relationship="Self.FK_MaterialsProducts_Products" FromRole="Products" ToRole="MaterialsProducts" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Products_Orders" FromRole="Products" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WholeSalers">
+          <Key>
+            <PropertyRef Name="IdWholeSaler" />
+          </Key>
+          <Property Name="IdWholeSaler" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NIP" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="WholeSalersAdresess" Relationship="Self.FK_WholeSalersAdresess_WholeSalers" FromRole="WholeSalers" ToRole="WholeSalersAdresess" />
+        </EntityType>
+        <EntityType Name="WholeSalersAdresess">
+          <Key>
+            <PropertyRef Name="IdWholesaler" />
+            <PropertyRef Name="IdAdress" />
+            <PropertyRef Name="IdWholeSalersAdreses" />
+          </Key>
+          <Property Name="IdWholesaler" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdAdress" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="IdWholeSalersAdreses" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Adresses" Relationship="Self.FK_WholeSalersAdresess_Adresses" FromRole="WholeSalersAdresess" ToRole="Adresses" />
+          <NavigationProperty Name="WholeSalers" Relationship="Self.FK_WholeSalersAdresess_WholeSalers" FromRole="WholeSalersAdresess" ToRole="WholeSalers" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_CompaniesAdresess_Adresses">
+          <End Role="Adresses" Type="Self.Adresses" Multiplicity="1" />
+          <End Role="CompaniesAdresess" Type="Self.CompaniesAdresess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresses">
+              <PropertyRef Name="IdAdress" />
+            </Principal>
+            <Dependent Role="CompaniesAdresess">
+              <PropertyRef Name="IdAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndClientsAdresses_Adresses">
+          <End Role="Adresses" Type="Self.Adresses" Multiplicity="1" />
+          <End Role="IndClientsAdresses" Type="Self.IndClientsAdresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresses">
+              <PropertyRef Name="IdAdress" />
+            </Principal>
+            <Dependent Role="IndClientsAdresses">
+              <PropertyRef Name="IdAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WholeSalersAdresess_Adresses">
+          <End Role="Adresses" Type="Self.Adresses" Multiplicity="1" />
+          <End Role="WholeSalersAdresess" Type="Self.WholeSalersAdresess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresses">
+              <PropertyRef Name="IdAdress" />
+            </Principal>
+            <Dependent Role="WholeSalersAdresess">
+              <PropertyRef Name="IdAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompaniesAdresess_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="CompaniesAdresess" Type="Self.CompaniesAdresess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="CompaniesAdresess">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtrasProducts_Extras">
+          <End Role="Extras" Type="Self.Extras" Multiplicity="1" />
+          <End Role="ExtrasProducts" Type="Self.ExtrasProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Extras">
+              <PropertyRef Name="IdExtra" />
+            </Principal>
+            <Dependent Role="ExtrasProducts">
+              <PropertyRef Name="IdExtra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtrasProducts_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ExtrasProducts" Type="Self.ExtrasProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="ExtrasProducts">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndClientsAdresses_IndClients">
+          <End Role="IndClients" Type="Self.IndClients" Multiplicity="1" />
+          <End Role="IndClientsAdresses" Type="Self.IndClientsAdresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IndClients">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="IndClientsAdresses">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_IndClients">
+          <End Role="IndClients" Type="Self.IndClients" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IndClients">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialsProducts_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+          <End Role="MaterialsProducts" Type="Self.MaterialsProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="MaterialsProducts">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialsProducts_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="MaterialsProducts" Type="Self.MaterialsProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="MaterialsProducts">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrder" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WholeSalersAdresess_WholeSalers">
+          <End Role="WholeSalers" Type="Self.WholeSalers" Multiplicity="1" />
+          <End Role="WholeSalersAdresess" Type="Self.WholeSalersAdresess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WholeSalers">
+              <PropertyRef Name="IdWholeSaler" />
+            </Principal>
+            <Dependent Role="WholeSalersAdresess">
+              <PropertyRef Name="IdWholesaler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DressMakerPolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_TransactionIndex_67f90f2e_4c5b_4990_863e_f67e92d2ba8c" EntityType="Self.C_TransactionIndex_67f90f2e_4c5b_4990_863e_f67e92d2ba8c" />
+          <EntitySet Name="Adresses" EntityType="Self.Adresses" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" />
+          <EntitySet Name="CompaniesAdresess" EntityType="Self.CompaniesAdresess" />
+          <EntitySet Name="Extras" EntityType="Self.Extras" />
+          <EntitySet Name="ExtrasProducts" EntityType="Self.ExtrasProducts" />
+          <EntitySet Name="IndClients" EntityType="Self.IndClients" />
+          <EntitySet Name="IndClientsAdresses" EntityType="Self.IndClientsAdresses" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" />
+          <EntitySet Name="MaterialsProducts" EntityType="Self.MaterialsProducts" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="WholeSalers" EntityType="Self.WholeSalers" />
+          <EntitySet Name="WholeSalersAdresess" EntityType="Self.WholeSalersAdresess" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+          <AssociationSet Name="FK_CompaniesAdresess_Adresses" Association="Self.FK_CompaniesAdresess_Adresses">
+            <End Role="Adresses" EntitySet="Adresses" />
+            <End Role="CompaniesAdresess" EntitySet="CompaniesAdresess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndClientsAdresses_Adresses" Association="Self.FK_IndClientsAdresses_Adresses">
+            <End Role="Adresses" EntitySet="Adresses" />
+            <End Role="IndClientsAdresses" EntitySet="IndClientsAdresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WholeSalersAdresess_Adresses" Association="Self.FK_WholeSalersAdresess_Adresses">
+            <End Role="Adresses" EntitySet="Adresses" />
+            <End Role="WholeSalersAdresess" EntitySet="WholeSalersAdresess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompaniesAdresess_Companies" Association="Self.FK_CompaniesAdresess_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="CompaniesAdresess" EntitySet="CompaniesAdresess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Companies" Association="Self.FK_Orders_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtrasProducts_Extras" Association="Self.FK_ExtrasProducts_Extras">
+            <End Role="Extras" EntitySet="Extras" />
+            <End Role="ExtrasProducts" EntitySet="ExtrasProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtrasProducts_Products" Association="Self.FK_ExtrasProducts_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ExtrasProducts" EntitySet="ExtrasProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndClientsAdresses_IndClients" Association="Self.FK_IndClientsAdresses_IndClients">
+            <End Role="IndClients" EntitySet="IndClients" />
+            <End Role="IndClientsAdresses" EntitySet="IndClientsAdresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_IndClients" Association="Self.FK_Orders_IndClients">
+            <End Role="IndClients" EntitySet="IndClients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialsProducts_Materials" Association="Self.FK_MaterialsProducts_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="MaterialsProducts" EntitySet="MaterialsProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialsProducts_Products" Association="Self.FK_MaterialsProducts_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="MaterialsProducts" EntitySet="MaterialsProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Orders" Association="Self.FK_Products_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WholeSalersAdresess_WholeSalers" Association="Self.FK_WholeSalersAdresess_WholeSalers">
+            <End Role="WholeSalers" EntitySet="WholeSalers" />
+            <End Role="WholeSalersAdresess" EntitySet="WholeSalersAdresess" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DressMakerPolModelStoreContainer" CdmEntityContainer="DressMakerPolEntities">
+          <EntitySetMapping Name="C_TransactionIndex_67f90f2e_4c5b_4990_863e_f67e92d2ba8c">
+            <EntityTypeMapping TypeName="DressMakerPolModel.C_TransactionIndex_67f90f2e_4c5b_4990_863e_f67e92d2ba8c">
+              <MappingFragment StoreEntitySet="_TransactionIndex_67f90f2e-4c5b-4990-863e-f67e92d2ba8c">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adresses">
+            <EntityTypeMapping TypeName="DressMakerPolModel.Adresses">
+              <MappingFragment StoreEntitySet="Adresses">
+                <ScalarProperty Name="IdAdress" ColumnName="IdAdress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="DressMakerPolModel.Companies">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompaniesAdresess">
+            <EntityTypeMapping TypeName="DressMakerPolModel.CompaniesAdresess">
+              <MappingFragment StoreEntitySet="CompaniesAdresess">
+                <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+                <ScalarProperty Name="IdAdress" ColumnName="IdAdress" />
+                <ScalarProperty Name="IdCompaniesAdresess" ColumnName="IdCompaniesAdresess" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Extras">
+            <EntityTypeMapping TypeName="DressMakerPolModel.Extras">
+              <MappingFragment StoreEntitySet="Extras">
+                <ScalarProperty Name="IdExtra" ColumnName="IdExtra" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtrasProducts">
+            <EntityTypeMapping TypeName="DressMakerPolModel.ExtrasProducts">
+              <MappingFragment StoreEntitySet="ExtrasProducts">
+                <ScalarProperty Name="IdExtra" ColumnName="IdExtra" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdExtrasProducts" ColumnName="IdExtrasProducts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndClients">
+            <EntityTypeMapping TypeName="DressMakerPolModel.IndClients">
+              <MappingFragment StoreEntitySet="IndClients">
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+                <ScalarProperty Name="TelNumber" ColumnName="TelNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndClientsAdresses">
+            <EntityTypeMapping TypeName="DressMakerPolModel.IndClientsAdresses">
+              <MappingFragment StoreEntitySet="IndClientsAdresses">
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdAdress" ColumnName="IdAdress" />
+                <ScalarProperty Name="IdClientsAdresses" ColumnName="IdClientsAdresses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="DressMakerPolModel.Materials">
+              <MappingFragment StoreEntitySet="Materials">
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialsProducts">
+            <EntityTypeMapping TypeName="DressMakerPolModel.MaterialsProducts">
+              <MappingFragment StoreEntitySet="MaterialsProducts">
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="IdMaterialsProducts" ColumnName="IdMaterialsProducts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DressMakerPolModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+                <ScalarProperty Name="Reception" ColumnName="Reception" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DressMakerPolModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DressMakerPolModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WholeSalers">
+            <EntityTypeMapping TypeName="DressMakerPolModel.WholeSalers">
+              <MappingFragment StoreEntitySet="WholeSalers">
+                <ScalarProperty Name="IdWholeSaler" ColumnName="IdWholeSaler" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WholeSalersAdresess">
+            <EntityTypeMapping TypeName="DressMakerPolModel.WholeSalersAdresess">
+              <MappingFragment StoreEntitySet="WholeSalersAdresess">
+                <ScalarProperty Name="IdWholesaler" ColumnName="IdWholesaler" />
+                <ScalarProperty Name="IdAdress" ColumnName="IdAdress" />
+                <ScalarProperty Name="IdWholeSalersAdreses" ColumnName="IdWholeSalersAdreses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="DressMakerPolModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
